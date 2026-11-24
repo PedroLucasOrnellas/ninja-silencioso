@@ -1,0 +1,327 @@
+:root {
+  color-scheme:dark;
+  --bg:#111917;
+  --paper:#eee8d9;
+  --muted:#aabbb0;
+  --line:#35473e;
+  --green:#a9ce8b;
+  --red:#e99a7d
+}
+
+
+* {
+  box-sizing:border-box
+}
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--paper);
+  font:16px/1.5 "Segoe UI",sans-serif
+}
+
+main {
+  max-width:1000px;
+  margin:auto;
+  padding:36px 28px
+}
+
+header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:26px
+}
+
+h1 {
+  font:700 clamp(26px,4vw,42px)/1.1 Georgia,serif;
+  margin:0;
+  letter-spacing:-.025em
+}
+
+h1 span {
+  font-size:30px;
+  color:var(--red);
+  margin-left:16px
+}
+
+header p {
+  margin:10px 0 0;
+  color:var(--muted)
+}
+
+button {
+  font:600 14px "Segoe UI",sans-serif;
+  cursor:pointer;
+  border:1px solid var(--line);
+  background:#202e27;
+  color:var(--paper);
+  padding:11px 17px;
+  border-radius:5px;
+  touch-action:manipulation
+}
+
+button:hover {
+  background:#35473b
+}
+
+button:focus-visible,canvas:focus-visible {
+  outline:3px solid var(--green);
+  outline-offset:3px
+}
+
+button:disabled {
+  opacity:.5;
+  cursor:default
+}
+
+kbd {
+  font:12px monospace;
+  border:1px solid #4b6052;
+  border-radius:3px;
+  padding:2px 5px;
+  white-space:nowrap
+}
+
+.game {
+  border:1px solid var(--line);
+  background:#17221d
+}
+
+.hud {
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:15px 20px;
+  color:var(--muted);
+  font-size:14px;
+  font-variant-numeric:tabular-nums
+}
+
+.hud strong {
+  color:var(--paper)
+}
+
+#smoke {
+  color:var(--green)
+}
+
+.stage {
+  position:relative
+}
+
+canvas {
+  display:block;
+  width:100%;
+  height:auto;
+  image-rendering:pixelated;
+  background:#23372b
+}
+
+.overlay {
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  background:#101914e8;
+  padding:20px
+}
+
+.overlay[hidden] {
+  display:none
+}
+
+.message {
+  max-width:410px;
+  text-align:center
+}
+
+.seal {
+  color:var(--red);
+  font:64px Georgia,serif
+}
+
+h2 {
+  font:700 clamp(24px,4vw,38px) Georgia,serif;
+  margin:12px 0
+}
+
+.message p {
+  color:#c2cdbf;
+  margin:0 0 25px
+}
+
+.primary {
+  background:var(--green);
+  color:#16251c;
+  border:0;
+  padding:14px 28px
+}
+
+.primary:hover {
+  background:#c4e5a9
+}
+
+.status {
+  padding:12px 20px;
+  color:var(--muted);
+  font-size:14px;
+  min-height:46px
+}
+
+footer {
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  margin-top:12px;
+  color:var(--muted);
+  font-size:13px
+}
+
+footer p {
+  margin:6px 0
+}
+
+.touch {
+  display:none;
+  text-align:center;
+  margin-top:18px
+}
+
+.touch button {
+  min-width:48px;
+  margin:3px;
+  min-height:45px
+}
+
+::selection {
+  background:var(--green);
+  color:var(--bg)
+}
+
+@media(max-width:650px) {
+  main {
+  padding:20px 12px
+}
+
+header {
+  align-items:flex-start;
+  margin-bottom:18px
+}
+
+header p {
+  font-size:13px
+}
+
+header button {
+  padding:8px;
+  font-size:12px
+}
+
+header kbd {
+  display:none
+}
+
+.hud {
+  padding:12px 10px;
+  font-size:12px
+}
+
+footer {
+  display:block
+}
+
+.touch {
+  display:block
+}
+
+.message p {
+  font-size:13px;
+  margin-bottom:12px
+}
+
+.seal {
+  display:none
+}
+
+h2 {
+  margin:0 0 12px
+}
+
+.status {
+  padding:10px;
+  font-size:12px
+}
+
+
+}
+
+@media(pointer:coarse) {
+  .touch {
+  display:block
+}
+
+
+}
+
+
+
+/* Os volumes de música e efeitos podem ser ajustados separadamente. */
+.audio-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 22px;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.audio-controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.audio-controls input {
+  width: 110px;
+  accent-color: var(--green);
+}
+.audio-controls input:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+}
+#audio-status {
+  flex-basis: 100%;
+}
+
+/* Fases concluídas permanecem acessíveis no mesmo navegador. */
+.phase-selector {
+  margin: 0 0 24px;
+}
+.phase-selector h2 {
+  font: 600 18px "Segoe UI", sans-serif;
+  margin: 0 0 6px;
+}
+.phase-selector p {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 12px;
+}
+.phase-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.phase-list button {
+  text-align: left;
+  font-size: 13px;
+}
+.phase-list button[aria-current="step"] {
+  border-color: var(--green);
+  color: var(--green);
+}
+@media (max-width: 480px) {
+  .phase-list {
+    grid-template-columns: 1fr;
+  }
+}

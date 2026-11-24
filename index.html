@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ninja Silencioso</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- A ordem importa: primeiro a biblioteca, depois os arquivos do jogo. -->
+  <script src="bibliotecas/p5.min.js" defer></script>
+  <script src="fases.js" defer></script>
+  <script src="desenho.js" defer></script>
+  <script src="audio.js" defer></script>
+  <script src="progresso.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Ninja Silencioso<span>忍</span></h1>
+        <p>A melhor fuga é aquela que ninguém percebe.</p>
+      </div>
+      <button id="restart" disabled>Reiniciar <kbd>R</kbd></button>
+    </header>
+
+    <nav class="phase-selector" aria-label="Escolher fase">
+      <h2>Escolher fase</h2>
+      <p id="progress-status" role="status">Conclua uma fase para liberar a próxima.</p>
+      <div class="phase-list">
+        <button data-fase="0" disabled>Fase 1</button>
+        <button data-fase="1" disabled>Fase 2 · Bloqueada</button>
+        <button data-fase="2" disabled>Fase 3 · Bloqueada</button>
+        <button data-fase="3" disabled>Fase 4 · Bloqueada</button>
+      </div>
+    </nav>
+
+    <section class="game" aria-label="Jogo de furtividade">
+      <div class="hud">
+        <strong id="level">Fase 1 / 4</strong>
+        <span id="smoke">Fumaça disponível</span>
+        <span id="timer">00:00</span>
+      </div>
+      <div class="stage">
+        <!-- O p5.js cria o canvas dentro desta área. -->
+        <div id="area-do-mapa"></div>
+        <div id="overlay" class="overlay">
+          <div class="message">
+            <div class="seal" aria-hidden="true">忍</div>
+            <h2 id="message-title">Entre nas sombras.</h2>
+            <p id="message-body">Atravesse o cenário e alcance o portão verde. Os guardas patrulham: observe o caminho antes de avançar.</p>
+            <button id="action" class="primary" disabled>Carregando imagens…</button>
+          </div>
+        </div>
+      </div>
+      <div class="status" id="status" role="status" aria-live="polite">
+        Quatro fases. Uma missão: passar despercebido.
+      </div>
+    </section>
+
+    <div class="audio-controls" aria-label="Controles de áudio">
+      <button id="toggle-sound" aria-pressed="false">Silenciar som</button>
+      <label for="music-volume">Música <input id="music-volume" type="range" min="0" max="100" value="25"></label>
+      <label for="effects-volume">Efeitos <input id="effects-volume" type="range" min="0" max="100" value="45"></label>
+      <span id="audio-status" role="status">Música na tela inicial: clique ou pressione uma tecla se necessário.</span>
+    </div>
+    <audio id="background-music" src="audio/musica-fundo.mp3" autoplay loop preload="auto"></audio>
+    <audio id="effect-inicio" src="audio/inicio.mp3" preload="auto"></audio>
+    <audio id="effect-derrota" src="audio/derrota.mp3" preload="auto"></audio>
+    <audio id="effect-fase" src="audio/fase.mp3" preload="auto"></audio>
+    <audio id="effect-fumaca" src="audio/fumaca.mp3" preload="auto"></audio>
+
+    <footer>
+      <p><kbd>W A S D</kbd> ou <kbd>↑ ← ↓ →</kbd> mover · <kbd>Espaço</kbd> fumaça · <kbd>P</kbd> pausar</p>
+      <p>Fumaça fixa de 3×3 casas por 3 segundos. Uma por fase.</p>
+    </footer>
+    <button id="retry-level">Repetir fase <kbd>T</kbd></button>
+
+    <div class="touch" aria-label="Controles de toque">
+      <button data-dir="cima" aria-label="Mover para cima">↑</button>
+      <div>
+        <button data-dir="esquerda" aria-label="Mover à esquerda">←</button>
+        <button data-dir="baixo" aria-label="Mover para baixo">↓</button>
+        <button data-dir="direita" aria-label="Mover à direita">→</button>
+        <button id="smoke-button">Fumaça</button>
+      </div>
+    </div>
+    <noscript>Ative o JavaScript do navegador para jogar.</noscript>
+  </main>
+</body>
+</html>
